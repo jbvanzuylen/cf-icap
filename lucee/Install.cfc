@@ -8,7 +8,7 @@
   ) />
 
   <!---
-    Called from Railo to validate values
+    Called by Lucee to validate values
   --->
   <cffunction name="validate" access="public" returntype="void" output="false">
     <cfargument name="error" type="struct" />
@@ -20,7 +20,7 @@
   </cffunction>
 
   <!---
-    Called from Railo to install the extension
+    Called by Lucee to install the extension
   --->
   <cffunction name="install" access="public" returntype="string" output="false">
     <cfargument name="error" type="struct" />
@@ -28,7 +28,7 @@
     <cfargument name="config" type="struct" />
 
     <!--- Defined local variables --->
-    <cfset var serverPath = expandPath('{railo-web-directory}') />
+    <cfset var serverPath = expandPath('{lucee-web-directory}') />
     <cfset var dirPath = "" />
     <cfset var dirContent = "" />
 
@@ -67,7 +67,7 @@
   </cffunction>
 
   <!---
-    Called from Railo to update the extension
+    Called by Lucee to update the extension
   --->
   <cffunction name="update" access="public" returntype="string" output="false">
     <cfargument name="error" type="struct" />
@@ -83,14 +83,14 @@
   </cffunction>
 
   <!---
-    Called from Railo to uninstall the extension
+    Called by Lucee to uninstall the extension
   --->
   <cffunction name="uninstall" access="public" returntype="string" output="false">
     <cfargument name="path" type="string" />
     <cfargument name="config" type="struct" />
 
     <!--- Defined local variables --->
-    <cfset var serverPath = expandPath('{railo-web-directory}') />
+    <cfset var serverPath = expandPath('{lucee-web-directory}') />
     <cfset var dirContent = "" />
     <cfset var library = "" />
     <cfset var funct = "" />
