@@ -4,6 +4,6 @@
   <cfargument name="service" type="string" required="true" />
   <cfargument name="file" type="string" required="true" />
 
-  <!--- Create a new pass with the specified style --->
+  <!--- Scan file --->
   <cfreturn createObject("component", "icap.Icap").scanFile(argumentCollection = arguments) />
 </cffunction>
