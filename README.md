@@ -4,7 +4,7 @@
 
 ### Lucee
 
-Download the latest version [here]()
+Download the latest version [here](https://github.com/jbvanzuylen/cf-icap/releases/download/v0.0.5/cf-icap-ext.zip)
 
 __Install as an extension__
 
