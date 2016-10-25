@@ -1,6 +1,5 @@
 package org.primeoservices.net.icap.messages;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 
 import org.apache.commons.net.SocketClient;
@@ -9,6 +8,7 @@ import org.primeoservices.net.Header;
 import org.primeoservices.net.HeaderList;
 import org.primeoservices.net.StatusLine;
 import org.primeoservices.net.icap.IcapHeaders;
+import org.primeoservices.net.icap.IcapOutputStream;
 
 public class IcapRespMod extends AbstractIcapRequest
 {
@@ -59,26 +59,26 @@ public class IcapRespMod extends AbstractIcapRequest
   }
 
   @Override
-  public void write(final BufferedWriter writer) throws IOException
+  public void write(final IcapOutputStream out) throws IOException
   {
     // Add encapsulated header
     this.addHeader(buildEncapHeader());
     // Write request
-    super.write(writer);
+    super.write(out);
     // Write HTTP response status line
-    writer.write(this.respStatusLine.toString());
-    writer.write(SocketClient.NETASCII_EOL);
+    out.write(this.respStatusLine.toString());
+    out.write(SocketClient.NETASCII_EOL);
     // Write HTTP response headers
-    writer.write(this.respHeaders.toString());
-    writer.write(SocketClient.NETASCII_EOL);
+    out.write(this.respHeaders.toString());
+    out.write(SocketClient.NETASCII_EOL);
     // Write HTTP response body
-    writer.write(Long.toHexString(this.respBody.getLength()));
-    writer.write(SocketClient.NETASCII_EOL);
-    this.respBody.write(writer);
-    writer.write(SocketClient.NETASCII_EOL);
-    writer.write("0; ieof");
-    writer.write(SocketClient.NETASCII_EOL);
-    writer.write(SocketClient.NETASCII_EOL);
+    out.write(Long.toHexString(this.respBody.getLength()));
+    out.write(SocketClient.NETASCII_EOL);
+    this.respBody.write(out);
+    out.write(SocketClient.NETASCII_EOL);
+    out.write("0; ieof");
+    out.write(SocketClient.NETASCII_EOL);
+    out.write(SocketClient.NETASCII_EOL);
   }
 
   private Header buildEncapHeader()

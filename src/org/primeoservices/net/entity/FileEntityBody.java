@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 
 import org.apache.commons.io.IOUtils;
 import org.primeoservices.net.EntityBody;
@@ -33,21 +32,6 @@ public class FileEntityBody implements EntityBody
     {
       IOUtils.copy(in, out);
       out.flush();
-    }
-    finally
-    {
-      IOUtils.closeQuietly(in);
-    }
-  }
-
-  @Override
-  public void write(Writer writer) throws IOException
-  {
-    final InputStream in = new FileInputStream(this.file);
-    try
-    {
-      IOUtils.copy(in, writer);
-      writer.flush();
     }
     finally
     {

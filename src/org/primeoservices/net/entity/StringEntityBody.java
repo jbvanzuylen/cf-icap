@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 
 import org.primeoservices.net.EntityBody;
 
@@ -27,12 +26,6 @@ public class StringEntityBody implements EntityBody
   public void write(final OutputStream out) throws IOException
   {
     out.write(this.string.getBytes());
-  }
-
-  @Override
-  public void write(Writer writer) throws IOException
-  {
-    writer.write(this.string);
   }
 
   @Override

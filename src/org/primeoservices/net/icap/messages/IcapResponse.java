@@ -1,11 +1,11 @@
 package org.primeoservices.net.icap.messages;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 import org.primeoservices.net.Header;
 import org.primeoservices.net.ProtocolVersion;
 import org.primeoservices.net.StatusLine;
+import org.primeoservices.net.icap.IcapInputStream;
 
 public class IcapResponse extends AbstractIcapMessage
 {
@@ -38,20 +38,29 @@ public class IcapResponse extends AbstractIcapMessage
     return this.statusLine;
   }
 
-  public static IcapResponse read(final BufferedReader reader) throws IOException
+  /**
+   * Reads the response from the specified input stream
+   * 
+   * @param in the input stream from which the response is to be read
+   * 
+   * @return the response read from the input stream
+   * 
+   * @throws IOException
+   */
+  public static IcapResponse read(final IcapInputStream in) throws IOException
   {
     // Read status line
-    String line = reader.readLine();
+    String line = in.readLine();
     final StatusLine statusLine = StatusLine.parse(line);
     final IcapResponse response = new IcapResponse(statusLine);
     // Read headers
-    while ((line = reader.readLine()) != null)
+    while ((line = in.readLine()) != null)
     {
       if (line.length() == 0) break;
       response.addHeader(Header.parse(line));
     }
     // Skip the rest
-    reader.skip(Long.MAX_VALUE);
+    in.skip(Long.MAX_VALUE);
     // Return response
     return response;
   }

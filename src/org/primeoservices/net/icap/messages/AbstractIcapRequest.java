@@ -1,6 +1,5 @@
 package org.primeoservices.net.icap.messages;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.URI;
 
@@ -9,6 +8,7 @@ import org.primeoservices.net.ProtocolVersion;
 import org.primeoservices.net.RequestLine;
 import org.primeoservices.net.icap.Icap;
 import org.primeoservices.net.icap.IcapHeaders;
+import org.primeoservices.net.icap.IcapOutputStream;
 
 public abstract class AbstractIcapRequest extends AbstractIcapMessage implements IcapRequest
 {
@@ -63,17 +63,17 @@ public abstract class AbstractIcapRequest extends AbstractIcapMessage implements
   /**
    * Writes this request to the specified write
    * 
-   * @param writer the writer to which the request is to be written
+   * @param out the output stream to which the request is to be written
    * 
    * @throws IOException in case of an error when writing this request
    */
-  public void write(final BufferedWriter writer) throws IOException
+  public void write(final IcapOutputStream out) throws IOException
   {
     // Write request line
-    writer.write(this.requestLine.toString());
-    writer.write(SocketClient.NETASCII_EOL);
+    out.write(this.requestLine.toString());
+    out.write(SocketClient.NETASCII_EOL);
     // Write headers
-    writer.write(this.getHeaderString());
-    writer.write(SocketClient.NETASCII_EOL);
+    out.write(this.getHeaderString());
+    out.write(SocketClient.NETASCII_EOL);
   }
 }

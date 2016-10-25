@@ -15,11 +15,7 @@
  */
 package org.primeoservices.net.icap;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.URI;
 
 import org.apache.commons.net.SocketClient;
@@ -59,16 +55,16 @@ public class IcapClient
 
   private class IcapSocketClient extends SocketClient
   {
-    private BufferedReader reader;
+    private IcapInputStream in;
 
-    private BufferedWriter writer;
+    private IcapOutputStream out;
 
     @Override
     protected void _connectAction_() throws IOException
     {
       super._connectAction_();
-      this.reader = new BufferedReader(new InputStreamReader(_input_));
-      this.writer = new BufferedWriter(new OutputStreamWriter(_output_));
+      this.in = new IcapInputStream(this._input_);
+      this.out = new IcapOutputStream(this._output_);
     }
 
     public IcapResponse execute(final IcapRequest request) throws Exception
@@ -77,18 +73,18 @@ public class IcapClient
       final URI uri = request.getRequestLine().getURI();
       this.connect(uri.getHost(), uri.getPort());
       // Write request
-      request.write(this.writer);
-      this.writer.flush();
+      request.write(this.out);
+      this.out.flush();
       // Read response (currently only status line and headers, skip the rest)
-      return IcapResponse.read(this.reader);
+      return IcapResponse.read(this.in);
     }
 
     @Override
     public void disconnect() throws IOException
     {
       super.disconnect();
-      this.reader = null;
-      this.writer = null;
+      this.in = null;
+      this.out = null;
     }
   }
 }
