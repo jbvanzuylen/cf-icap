@@ -64,7 +64,7 @@ public class HeaderList
   public String toString()
   {
     final StringBuilder sb = new StringBuilder();
-    for (Header header : headers)
+    for (Header header : this.headers)
     {
       sb.append(header);
       sb.append(SocketClient.NETASCII_EOL);
