@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Header
 {
-  private static final Pattern PATTERN = Pattern.compile("([A-Za-z0-9-]+): (.*)");
+  private static final Pattern PATTERN = Pattern.compile("([A-Za-z0-9-]+): (.*)", Pattern.DOTALL);
 
   /**
    * The name of the header

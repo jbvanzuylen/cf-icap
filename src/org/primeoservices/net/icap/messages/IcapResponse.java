@@ -54,10 +54,30 @@ public class IcapResponse extends AbstractIcapMessage
     final StatusLine statusLine = StatusLine.parse(line);
     final IcapResponse response = new IcapResponse(statusLine);
     // Read headers
+    StringBuilder header = new StringBuilder();
     while ((line = in.readLine()) != null)
     {
-      if (line.length() == 0) break;
-      response.addHeader(Header.parse(line));
+      if (line.length() == 0)
+      {
+        if (header.length() > 0)
+        {
+          response.addHeader(Header.parse(header.toString()));
+        }
+        break;
+      }
+      if (Character.isWhitespace(line.charAt(0)))
+      {
+        header.append("\n").append(line.trim());
+      }
+      else
+      {
+        if (header.length() > 0)
+        {
+          response.addHeader(Header.parse(header.toString()));
+          header = new StringBuilder();
+        }
+        header.append(line);
+      }
     }
     // Skip the rest
     in.skip(Long.MAX_VALUE);
