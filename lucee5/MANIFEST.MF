@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-Date: @RELEASE_DATE@
+release-type: web
+id: "9BF26A1F-FB0F-49A2-872F1CB8F856417D"
+version: "@VERSION@"
+name: "icap"
+description: "ICAP library"
+author: "Jean-Bernard van Zuylen"
+start-bundles: false
