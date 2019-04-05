@@ -6,7 +6,7 @@ __A ICAP library for Coldfusion__
 
 ### Lucee 4
 
-Download the latest version [here](https://github.com/jbvanzuylen/cf-icap/releases/download/v0.0.7/cf-icap-ext.zip)
+Download the latest version [here](https://github.com/jbvanzuylen/cf-icap/releases/download/v1.0.0/cf-icap-lucee4-ext.zip)
 
 __Install as an extension__
 
