@@ -6,10 +6,10 @@
     <name>icap</name>
     <label>ICAP library</label>
     <description></description>
-    <version>@VERSION@</version>
-    <image>https://raw.github.com/jbvanzuylen/cf-icap/master/lucee4/icap-logo.png</image>
+    <version>${pom.version}</version>
+    <image>https://raw.githubusercontent.com/jbvanzuylen/cf-icap/master/logo.png</image>
     <author>Jean-Bernard van Zuylen</author>
     <support>https://github.com/jbvanzuylen/cf-icap/issues</support>
-    <created>@RELEASE_DATE@</created>
+    <created>${ext.release.date}</created>
   </info>
 </config>

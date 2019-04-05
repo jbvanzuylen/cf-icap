@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Built-Date: @RELEASE_DATE@
+Built-Date: ${ext.release.date}
 release-type: web
 id: "9BF26A1F-FB0F-49A2-872F1CB8F856417D"
-version: "@VERSION@"
+version: "${pom.version}"
 name: "icap"
 description: "ICAP library"
 author: "Jean-Bernard van Zuylen"
